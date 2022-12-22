@@ -1,43 +1,45 @@
-const buttons = document.querySelectorAll(".drum");
+document.addEventListener("keydown", function (event) {
+	playInstrument(event.key);
+});
 
-buttons.forEach((button) => {
-	button.addEventListener("click", handleClick);
+document.querySelectorAll(".drum").forEach(function (btn) {
+	btn.addEventListener("click", handleClick);
 });
 
 function handleClick() {
-	var buttonText = this.textContent;
-	switch (buttonText) {
+	var clickedOn = this.innerText;
+	playInstrument(clickedOn);
+}
+
+function playInstrument(key) {
+	var soundToPlay = "";
+	switch (key) {
 		case "w":
-			var audio = new Audio("sounds/tom-1.mp3");
-			audio.play();
+			soundToPlay = "sounds/tom-1.mp3";
 			break;
 		case "a":
-			var audio = new Audio("sounds/tom-2.mp3");
-			audio.play();
+			soundToPlay = "sounds/tom-2.mp3";
 			break;
 		case "s":
-			var audio = new Audio("sounds/tom-3.mp3");
-			audio.play();
+			soundToPlay = "sounds/tom-3.mp3";
 			break;
 		case "d":
-			var audio = new Audio("sounds/tom-4.mp3");
-			audio.play();
+			soundToPlay = "sounds/tom-4.mp3";
 			break;
 		case "j":
-			var audio = new Audio("sounds/kick-bass.mp3");
-			audio.play();
+			soundToPlay = "sounds/kick-bass.mp3";
 			break;
 		case "k":
-			var audio = new Audio("sounds/crash.mp3");
-			audio.play();
+			soundToPlay = "sounds/crash.mp3";
 			break;
 		case "l":
-			var audio = new Audio("sounds/snare.mp3");
-			audio.play();
+			soundToPlay = "sounds/snare.mp3";
 			break;
 		default:
-			console.log(this);
+			console.log(key);
 	}
-	this.style = "color:red";
-	console.log(this.innerHTML);
+	if (soundToPlay.length > 1) {
+		var audio = new Audio(soundToPlay);
+		audio.play();
+	}
 }
