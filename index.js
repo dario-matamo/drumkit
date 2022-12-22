@@ -47,9 +47,14 @@ function playInstrument(key) {
 }
 
 function buttonAnimation(key) {
+    try {
     var activeButton = document.querySelector("." + key);
     activeButton.classList.add("pressed");
     setTimeout(function () {
         activeButton.classList.remove("pressed"); 
-    },100);
+    },100);    
+    } catch (error) {
+        console.log("This key is not in the drumkit "+key);
+    }
+    
 }
