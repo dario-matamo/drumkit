@@ -1,5 +1,6 @@
 document.addEventListener("keydown", function (event) {
-	playInstrument(event.key);
+    playInstrument(event.key);
+    buttonAnimation(event.key);
 });
 
 document.querySelectorAll(".drum").forEach(function (btn) {
@@ -8,7 +9,8 @@ document.querySelectorAll(".drum").forEach(function (btn) {
 
 function handleClick() {
 	var clickedOn = this.innerText;
-	playInstrument(clickedOn);
+    playInstrument(clickedOn);
+    buttonAnimation(clickedOn);
 }
 
 function playInstrument(key) {
@@ -42,4 +44,12 @@ function playInstrument(key) {
 		var audio = new Audio(soundToPlay);
 		audio.play();
 	}
+}
+
+function buttonAnimation(key) {
+    var activeButton = document.querySelector("." + key);
+    activeButton.classList.add("pressed");
+    setTimeout(function () {
+        activeButton.classList.remove("pressed"); 
+    },100);
 }
